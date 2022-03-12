@@ -1,0 +1,71 @@
+Дан родительский класс Figure. В нем прописаны две виртуальные функции - 
+вычисление периметра и площади
+От него наследуются классы
+Triangle, Parallelogram, Ellipse
+1. Triangle
+*От класса Triangle наследуются классы RTriangle (прямоугольный), ITriangle (равнобедренный)
+*От класса ITriangle наследуется класс ETriangle (равносторонний)
+
+2. Parallelogram
+*От класса Parallelogram наследуется класс Rectangle
+*От класса Rectangle наследуется класс Square
+
+3. Ellipse
+*От класа Ellipse наследуется класс Circle
+
+
+Необходимо для каждого класса реализовать функции вычисления и прописать название фигуры
+ПРИМЕР:
+
+Figure.h
+class Figure {
+public:
+    virtual double calculateS() const = 0;
+    virtual double calculateP() const = 0;
+
+    std::string getName() const;
+
+protected:
+    std::string _name;
+};
+
+Triangle.h
+class Triangle : public Figure {
+public:
+    Triangle(double a, double b, double c);
+    double calculateP() const override;
+    double calculateS() const override;
+
+protected:
+    double _a, _b, _c;
+};
+
+
+Triangle.cpp
+#include "Triangle.h"
+
+Triangle::Triangle(double a, double b, double c) {
+    _name = "Triangle";
+    _a = a;
+    _b = b;
+    _c = c;
+
+    assert(
+        (a + b > c)
+        && (a + c > b)
+        && (b + c > a)
+    );
+}
+
+double Triangle::calculateP() const {
+    return _a + _b + _c;
+}
+
+double Triangle::calculateS() const {
+    const double p = calculateP() / 2;
+    return std::sqrt(
+        p * (p - _a)
+         * (p - _b)
+         * (p - _c)
+    );
+}
