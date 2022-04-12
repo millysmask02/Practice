@@ -1,29 +1,30 @@
 //ЗАДАЧИ НА 1 СЕМЕСТР
+/*
 Задача 1 (+)
 В функцию подаются координаты двух точек (x,y), через которые
 проходит прямая y = kx + b. Вывести уравнение прямой.
+Примечание: если две точки совпадают, вывести 0.
 Сигнатура: std::string line(float x1, float y1, floar x2, float y2);
 Example 1:
 input: 1 5 2 7
 output: y = 2x + 3
+*/
 
+std::string line(float x1, float y1, float x2, float y2);
 TEST_CASE( "line") {
     SECTION("standart cases")
     {
-        REQUIRE(std::string(line(1,5,2,7)) == std::string(y = 2x + 3)));
-        REQUIRE(std::string(line(0,0,4,4)) == std::string(y = x)));
-        REQUIRE(std::string(line(-2,3,0,5)) == std::string(y = x + 5)));
-        REQUIRE(std::string(line(1,2,2,2)) == std::string(y = 2)));
-        REQUIRE(std::string(line(1,2,1,3)) == std::string(x = 1)));
+        REQUIRE(std::string(line(1,5,2,7)) == std::string("y = 2x + 3")));
+        REQUIRE(std::string(line(0,0,4,4)) == std::string("y = x")));
+        REQUIRE(std::string(line(-2,3,0,5)) == std::string("y = x + 5")));
+        REQUIRE(std::string(line(1,2,2,2)) == std::string("y = 2")));
+        REQUIRE(std::string(line(1,2,1,3)) == std::string("x = 1")));
+        REQUIRE(std::string(line(1,1,1,1)) == std::string("0")));
     }
 }
 
-Задача 2. (Мб убрать? Выглядит бесполезной)
-Вычислить площадь и периметр фигур: треугольник (по данным трем сторонам),
-прямоугольник (по данным ширине и высоте), круг (по заданному радиусу). 
-Длины сторон и радиус вводятся пользователем.
 
-
+/*
 Задача 3. (+)
 В функцию подается натуральное число. Вывести произведение его нечетных цифр.
 Сигнатура: int multiplyOdd(int n);
@@ -34,7 +35,9 @@ output: 315
 Example 2:
 input: 123
 output: 3
+*/
 
+int multiplyOdd(int n);
 TEST_CASE("the product of odd digits") {
     REQUIRE( multiplyOdd(1) == 1 );
     REQUIRE( multiplyOdd(456789) == 315 );
@@ -44,6 +47,7 @@ TEST_CASE("the product of odd digits") {
 }
 
 
+/*
 Задача 4. (+)
 В функцию подаются три целых неотрицательных числа. Определить, может ли существовать треугольник с такими
 сторонами, и если да, то какой он? 
@@ -55,7 +59,9 @@ output: 4
 Example 2:
 input: 2 4 10
 output: 0
+*/
 
+int triangle(int a, int b, int c);
 TEST_CASE("type of triangle") {
     REQUIRE( triangle(3,4,5) == 4 );
     REQUIRE( triangle(2,4,10) == 0 );
@@ -66,9 +72,10 @@ TEST_CASE("type of triangle") {
 }
 
 
-
+/*
 Задача 5. (+)
-Напишите функции по вычислению факториала и нахождению n-ого элемента ряда Фибоначчи.
+Напишите функции по вычислению факториала и нахождению n-ого элемента ряда Фибоначчи. 
+n - целое неотрицательное число.
 Сигнатура: 
 int Factorial(int number) 
 int Fibonacci(int number)
@@ -78,6 +85,7 @@ output: 6
 Example 1: Фибоначчи
 input: 3
 output: 2
+*/
 
 #define CATCH_CONFIG_MAIN
 #include "catch2\catch.hpp"
@@ -85,6 +93,7 @@ output: 2
 int Factorial(int number);
 int Fibonacci(int number);
 TEST_CASE( "Factorials are computed") {
+    REQUIRE( Factorial(0) == 1 );
     REQUIRE( Factorial(1) == 1 );
     REQUIRE( Factorial(2) == 2 );
     REQUIRE( Factorial(3) == 6 );
@@ -100,8 +109,8 @@ TEST_CASE( "Fibonacci are computed") {
 }
 
 
-
-Задача 6. (+) дописать еще тестов
+/*
+Задача 6. (+) дописать еще тестов (спросить про nullptr)
 Напишите функцию, которая считает сумму нечетных элементов массива.
 В функцию подается массив целых чисел и количество элементов в массиве.
 Сигнатура: int sumOdd(int mus[], int number);
@@ -111,8 +120,10 @@ output: 9
 Example 2:
 input: 0 1 -1 5 6
 output: 5
+*/
 
-TEST_CASE("Sum odd")
+int sumOdd(int* array, int number);
+TEST_CASE( "Sum odd" )
 {
     int m[6] = {-1, 0, 1, -2, -4, 5};
     REQUIRE(sumOdd(m, 6) == 5);
@@ -124,21 +135,138 @@ TEST_CASE("Sum odd")
     REQUIRE(sumOdd(array, 1) == 0);
 }
 
-
+/*
 Задача 7. (я пока нинаю как получше передать матрицы)
-Пользователь вводит два числа m и n - размер первой матрицы.
-Затем вводятся числа, которыми заполняются две матрицы. Найти произведение матриц.
-Напишите функцию, которая считает произведение двух матриц
+Напишите функцию, которая считает произведение двух матриц.
+Примечание: размер первой матрицы - M x N, второй - N x M.
+Сигнатура: int** mulMatrix(int** matr_f, int** matr_s, int m, int n);
+Example:
+Input: 
+matr_f
+1 4
+2 0 
+2 3
 
+matr_s
+0 1 2
+0 4 3
+
+N = 2 
+M = 3
+
+output: 
+16 7
+16 9
+*/
+
+int** mulMatrix(int** matr_f, int** matr_s, int m, int n);
+TEST_CASE( "Mul matrix" )
+{
+    int mf[3][3];
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            mf[i][j] = i + j;
+        }
+    }
+    int ms[3][3] = {
+        {2, 4, 6},
+        {7, 3, 5},
+        {3, 8, 12}
+    };
+
+    int mrt[3][3] = {
+        {13, 19, 29},
+        {37, 49, 75},
+        {61, 79, 121}
+    };
+    int** mr = mulMatrix((int**)mf, (int**)ms, 3, 3);
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            REQUIRE(mrt[i][j] == mr[i][j]);
+        }
+    }
+}
+
+
+
+/*
 Задача 8. (аналогично 7)
-Дана квадратная матрица 3х3. Пользователь заполняет ее числами. Найти определитель.
+Написать функцию, которая считает определитель матрицы 3х3. 
+Сигнатура: int detMatrix(int** matr);
+Example:
+input:  
+1 2 0
+4 3 -1
+-2 0 4
+output: -16
+*/
 
-Задача 9. (не хочу пока строки вспоминать)
-Пользователь вводит строку символов, состоящую из чисел. 
-Преобразовать строку в соответствующее число и обратно.
+int detMatrix(int** matr);
+TEST_CASE( "Det matrix" ) 
+{   
+    SECTION("ex1") 
+    { 
+        int m[3][3];
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                m[i][j] = i + j;
+            }
+        }
+        REQUIRE(detMatrix((int**)m)  == 0);
+    }
 
-Задача 10.(тоже думаю убрать)
-Пользователь вводит натуральное число n. Разложить число в произведение простых множителей.
+    SECTION("Ex2") 
+    {
+        int m[3][3] = {
+            {2, 4, 6},
+            {7, 3, 5},
+            {3, 8, 12}
+        };
+        REQUIRE(detMatrix((int**)m)  == -2);
+    }
+
+}
+
+/*
+Задача 9.
+Напишите функцию, которая из строки, состоящую из разных символов, берет цифры и переходит
+их в соответствующее число. 
+Сигнатура: int strToInt(char* str);
+Example:
+input: "1jdj-5kd%7"
+output: 157
+*/
+
+int strToInt(char* str);
+TEST_CASE( "Past Mult" ) 
+{    
+    REQUIRE(std::string(pastMult(60))  == std::string("2*2*3*5"));
+    REQUIRE(std::string(pastMult(1))  == std::string("1"));
+    REQUIRE(std::string(pastMult(17))  == std::string("17"));
+}
+
+
+
+
+
+/*
+Задача 10.
+Напишите функцию, которая натуральное число n раскладывает в произведение простых множителей.
+Множители выводятся в порядке неубывания через знак *.
+Сигнатура: char* pastMult(int n);
+Example:
+input: 60
+output: 2*2*3*5
+*/
+
+char* pastMult(int n);
+TEST_CASE( "Past Mult" ) 
+{    
+    REQUIRE(std::string(pastMult(60))  == std::string("2*2*3*5"));
+    REQUIRE(std::string(pastMult(1))  == std::string("1"));
+    REQUIRE(std::string(pastMult(17))  == std::string("17"));
+}
+
 
 Задача 11. (а какой формат будет у восьмеричного числа? Мб сделать строкой?)
 Дано натуральное число n. Перевести его в восьмеричную систему счисления.
