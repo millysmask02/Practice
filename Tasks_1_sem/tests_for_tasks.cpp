@@ -1,25 +1,30 @@
-//ЗАДАЧИ НА 1 СЕМЕСТР
+//ЗАДАЧИ НА 1 СЕМЕСТР\\ 
+
+#define CATCH_CONFIG_MAIN
+#include "catch2\catch.hpp"
+
 /*
 Задача 1 (+)
 В функцию подаются координаты двух точек (x,y), через которые
 проходит прямая y = kx + b. Вывести уравнение прямой.
 Примечание: если две точки совпадают, вывести 0.
-Сигнатура: std::string line(float x1, float y1, floar x2, float y2);
+Сигнатура: char* line(float x1, float y1, floar x2, float y2);
 Example 1:
 input: 1 5 2 7
 output: y = 2x + 3
 */
 
-std::string line(float x1, float y1, float x2, float y2);
-TEST_CASE( "line") {
-    SECTION("standart cases")
+char* line(float x1, float y1, float x2, float y2);
+TEST_CASE( "line" )  
+{
+    SECTION( "standart cases" )
     {
-        REQUIRE(std::string(line(1,5,2,7)) == std::string("y = 2x + 3")));
-        REQUIRE(std::string(line(0,0,4,4)) == std::string("y = x")));
-        REQUIRE(std::string(line(-2,3,0,5)) == std::string("y = x + 5")));
-        REQUIRE(std::string(line(1,2,2,2)) == std::string("y = 2")));
-        REQUIRE(std::string(line(1,2,1,3)) == std::string("x = 1")));
-        REQUIRE(std::string(line(1,1,1,1)) == std::string("0")));
+        REQUIRE(std::string(line(1,5,2,7)) == std::string("y = 2x + 3"));
+        REQUIRE(std::string(line(0,0,4,4)) == std::string("y = x"));
+        REQUIRE(std::string(line(-2,3,0,5)) == std::string("y = x + 5"));
+        REQUIRE(std::string(line(1,2,2,2)) == std::string("y = 2"));
+        REQUIRE(std::string(line(1,2,1,3)) == std::string("x = 1"));
+        REQUIRE(std::string(line(1,1,1,1)) == std::string("0"));
     }
 }
 
@@ -38,7 +43,8 @@ output: 3
 */
 
 int multiplyOdd(int n);
-TEST_CASE("the product of odd digits") {
+TEST_CASE("the product of odd digits")
+{
     REQUIRE( multiplyOdd(1) == 1 );
     REQUIRE( multiplyOdd(456789) == 315 );
     REQUIRE( multiplyOdd(123) == 3 );
@@ -62,7 +68,8 @@ output: 0
 */
 
 int triangle(int a, int b, int c);
-TEST_CASE("type of triangle") {
+TEST_CASE( "type of triangle" ) 
+{
     REQUIRE( triangle(3,4,5) == 4 );
     REQUIRE( triangle(2,4,10) == 0 );
     REQUIRE( triangle(2,2,1) == 2 );
@@ -87,9 +94,6 @@ input: 3
 output: 2
 */
 
-#define CATCH_CONFIG_MAIN
-#include "catch2\catch.hpp"
-
 int Factorial(int number);
 int Fibonacci(int number);
 TEST_CASE( "Factorials are computed") {
@@ -110,7 +114,7 @@ TEST_CASE( "Fibonacci are computed") {
 
 
 /*
-Задача 6. (+) дописать еще тестов (спросить про nullptr)
+Задача 6. (+) 
 Напишите функцию, которая считает сумму нечетных элементов массива.
 В функцию подается массив целых чисел и количество элементов в массиве.
 Сигнатура: int sumOdd(int mus[], int number);
@@ -133,10 +137,14 @@ TEST_CASE( "Sum odd" )
 
     int array[1] = {2};
     REQUIRE(sumOdd(array, 1) == 0);
+
+    int null_mus[1];
+    REQUIRE(sumOdd(null_mus, 1) == 0);
 }
 
+
 /*
-Задача 7. (я пока нинаю как получше передать матрицы)
+Задача 7. (+)
 Напишите функцию, которая считает произведение двух матриц.
 Примечание: размер первой матрицы - M x N, второй - N x M.
 Сигнатура: int** mulMatrix(int** matr_f, int** matr_s, int m, int n);
@@ -168,6 +176,7 @@ TEST_CASE( "Mul matrix" )
             mf[i][j] = i + j;
         }
     }
+
     int ms[3][3] = {
         {2, 4, 6},
         {7, 3, 5},
@@ -179,6 +188,7 @@ TEST_CASE( "Mul matrix" )
         {37, 49, 75},
         {61, 79, 121}
     };
+
     int** mr = mulMatrix((int**)mf, (int**)ms, 3, 3);
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
@@ -188,9 +198,8 @@ TEST_CASE( "Mul matrix" )
 }
 
 
-
 /*
-Задача 8. (аналогично 7)
+Задача 8. (+)
 Написать функцию, которая считает определитель матрицы 3х3. 
 Сигнатура: int detMatrix(int** matr);
 Example:
@@ -224,13 +233,12 @@ TEST_CASE( "Det matrix" )
         };
         REQUIRE(detMatrix((int**)m)  == -2);
     }
-
 }
 
 /*
-Задача 9.
+Задача 9. (+)
 Напишите функцию, которая из строки, состоящую из разных символов, берет цифры и переходит
-их в соответствующее число. 
+их в соответствующее число. Если в строке нет цифр, вернуть -1.
 Сигнатура: int strToInt(char* str);
 Example:
 input: "1jdj-5kd%7"
@@ -238,19 +246,16 @@ output: 157
 */
 
 int strToInt(char* str);
-TEST_CASE( "Past Mult" ) 
+TEST_CASE( "Str to int" ) 
 {    
-    REQUIRE(std::string(pastMult(60))  == std::string("2*2*3*5"));
-    REQUIRE(std::string(pastMult(1))  == std::string("1"));
-    REQUIRE(std::string(pastMult(17))  == std::string("17"));
+    REQUIRE(strToInt("ss1df3sd5df")  == 135);
+    REQUIRE(strToInt("1&2(3")  == 123);
+    REQUIRE(strToInt("ssds*&js")  == -1);
 }
 
 
-
-
-
 /*
-Задача 10.
+Задача 10. (+)
 Напишите функцию, которая натуральное число n раскладывает в произведение простых множителей.
 Множители выводятся в порядке неубывания через знак *.
 Сигнатура: char* pastMult(int n);
@@ -268,44 +273,140 @@ TEST_CASE( "Past Mult" )
 }
 
 
-Задача 11. (а какой формат будет у восьмеричного числа? Мб сделать строкой?)
-Дано натуральное число n. Перевести его в восьмеричную систему счисления.
+/*
+Задача 11. (+)
+Напишите функцию, которая целое неотрицательное число n переводит в восьмиричную систему счисления.
+Сигнатура: int numbToEight(int n);
+Example:
+input: 127
+output: 177
+*/
 
-Задача 12. (снова не хочу)
-Пользователь вводит строку. Перевести ее в верхний регистр и вывести. 
+int numbToEight(int n);
+TEST_CASE( "Number to 8-system" ) 
+{    
+    REQUIRE(numbToEight(127)  == 177);
+    REQUIRE(numbToEight(0)  == 0);
+    REQUIRE(numbToEight(8)  == 10);
+    REQUIRE(numbToEight(7)  == 7);
+}
 
-Задача 13. (убираем)
-Вводится пятизначное число. Необходимо вывести отдельно каждую цифру в новой строке.
 
-Задача 14. 
-Пользователь вводит натуральное число n - количество слагаемых и целое число k - степень.
-Найти алгебраическую сумму для выражения: 1^k + 2^k + 3^k + … + N^k.
+/*
+Задача 12. (+)  
+Написать функцию, которая переводит строку в верхний регистр.
+Сигнатура: char* toUpper(char* str);
+Example:
+input: abcd
+output: ABCD
+*/
 
-Задача 15.
-Вводится натуральное число. Найти наибольшую и наименьшую цифру в числе.
+char* toUpper(char* str);
+TEST_CASE( "Str to Upper" ) 
+{    
+    REQUIRE(std::string(toUpper("1abc2"))  == std::string("1ABC2"));
+    REQUIRE(std::string(toUpper("123"))  == std::string("123"));
+    REQUIRE(std::string(toUpper(""))  == std::string(""));
+    REQUIRE(std::string(toUpper("aDc!21cA"))  == std::string("ADC!21CA"));
+}
 
-Задача 16.
-Вводятся 3 рациональных числа x,y,z - координаты вектора. Найти его длину. Ответ округлить до сотых. 
 
-Задача 17.
-Вводятся координаты точки. Определить, в какой четверти она расположена. 
+/*
+Задача 17. (+)
+Написать функцию, которая определяет, в какой четверти расположена точка (x,y).
+Если точка лежит на координатной оси, вывести 0.
+Сигнатура: int wherePoint(int x, int y);
+Example:
+input: 3 -2
+output: 4
+*/
 
-Задача 18.
-Пользователь вводит нечетное число n >= 3, затем вводится число, где  1 - *,2 -  +, 3 - #.
-Составить программу, которая будет печатать ромб выбранным значком. 
-Выбор значков организовать оператором switch.
+int wherePoint(int x, int y);
+TEST_CASE( "Where point?" ) 
+{    
+    REQUIRE(wherePoint(3, -2)  == 4);
+    REQUIRE(wherePoint(0,0)  == 0);
+    REQUIRE(wherePoint(1,1)  == 1);
+    REQUIRE(wherePoint(-2,1)  == 2);
+    REQUIRE(wherePoint(-3, -2)  == 3);
+    REQUIRE(wherePoint(1, 0)  == 0);
+    REQUIRE(wherePoint(0,1)  == 0);
+}
 
-Задача 19.
-Программа принимает пятизначное число. Определить, является ли введенное число палиндромом.
-Если да - вывести 1, если нет - 0.
 
+
+/*
+Задача 19. (+)
+Написать функцию, которая определяет, является число палиндромом.
+Сигнатура: bool palindrome(int n);
+Example 1:
+input: 12521
+output: 1
+Example 2:
+input: 2222
+output: 1
+Example 3:
+input: 123
+output: 0
+*/
+
+bool palindrome(int n);
+TEST_CASE( "palindrome" ) 
+{    
+    REQUIRE(palindrome(11511)  == 1);
+    REQUIRE(palindrome(123)  == 0);
+    REQUIRE(palindrome(22)  == 1);
+    REQUIRE(palindrome(1)  == 1);
+    REQUIRE(palindrome(12312)  == 0);
+}
+
+
+/*
 Задача 20.
-Найти след квадратной матрицы. Размер матрицы NxN вводит пользователь, матрицу заполнять случайными числами.
+Напишите функцию, которая считает след квадратной матрицы NxN.
+Сигнатура: int trMatrix(int** matr, int n);
+Example:
+input:
+2 -1
+4 0
+2
+output: 2
+*/
 
-Задача 21.
-Используя оператор цикла do while, составить программу, которая будет требовать ввод цифр
-с клавиатуры до тех пор, пока не будет введен 0. Вывести сумму введенных цифр. 
+int trMatrix(int** matr, int n);
+TEST_CASE( "tr matrix" ) 
+{   
+    SECTION("Ex1") 
+    {
+        int m[3][3] = {
+            {2, 4, 6},
+            {7, 3, 5},
+            {3, 8, 12}
+        };
+        REQUIRE(trMatrix((int**)m, 3)  == 17);
+    }
 
+    SECTION("Ex2") 
+    {
+        int m[2][2] = {
+            {0, 1},
+            {7, 3}
+        };
+        REQUIRE(trMatrix((int**)m, 2)  == 3);
+    }
+
+    SECTION("Ex3") 
+    {
+        int m[1][1] = {{1}};
+        REQUIRE(trMatrix((int**)m, 1)  == 1);
+    }
+}
+
+
+
+
+
+/* 
 Задача 22.
 Даны два уравнения линий: y = ax^2 + bx + c и y = dx + k. Пользователь вводит числа a, b, c, d, k.
 Вывести координаты (x,y) точки/точек пересечения. Если линии не пересекаются, вывести 0. 
@@ -335,56 +436,289 @@ TEST_CASE( "Past Mult" )
 Задача 27.
 В первой строчке пользователь вводит число n - размер массива. На следующей строчке вводятся элементы массива. 
 Вывести все нечетные элементы массива.
+*/
 
+
+
+
+
+
+/*
 Задача 28.
-Пользователь вводит строку. Найти наибольшее количество идущих подряд букв.
+Напишите функцию, которая находит в строке наибольшее количество одинаковых подряд идущих элементов.
+Сигнатура: int maxRepeatElements(char* str);
+Example:
+input: aaabbbbdfdas22ewiiiia
+output: 4
+*/
 
+int maxRepeatElements(char* str);
+TEST_CASE("max count repeat elements") 
+{
+    REQUIRE(maxRepeatElements("abcccd") == 3);
+    REQUIRE(maxRepeatElements("1111abc") == 4);
+    REQUIRE(maxRepeatElements("abccddd") == 3);
+    REQUIRE(maxRepeatElements("abccdd") == 2);
+    REQUIRE(maxRepeatElements("abc") == 1);
+    REQUIRE(maxRepeatElements("abcdd") == 2);
+}
+
+
+/*
 Задача 29.
-Пользователь вводит строку символов. Признак конца строки — символ '\n' (переход на новую строку). 
-Строка состоит из слов, которые отделены друг от друга пробелами. Вывести самое длинное слово и его порядковый номер.
+Пользователь вводит строку символов. Строка состоит из слов, которые отделены друг от друга пробелами. 
+Напишите функцию, которая возращает самое длинное слово и через пробел его порядковый номер.
+Сигнатура: char* longWord(const char* str);
+Example:
+input:
+"A long time ago in a galaxy far far away"
+output:
+"galaxy 7"
+*/
 
-Задача 30.
+char* longWord(const char* str);
+TEST_CASE( "find long word" ) 
+{    
+    REQUIRE(std::string(longWord("A long time ago in a galaxy far far away"))  == std::string("galaxy 7"));
+    REQUIRE(std::string(longWord("the session is coming soon"))  == std::string("session 2"));
+    REQUIRE(std::string(longWord("and students will sleep less"))  == std::string("students 2"));
+    REQUIRE(std::string(longWord("abc"))  == std::string("abc 1"));
+}
+
+
+/*
+Задача 31.
+Напишите функцию, которая принимает массив целых чисел, а возвращает максимальное по модулю
+произведение двух чисел из этого массива.
+Сигнатура: int maxMult(int* mus);
+Example:
+input: 1, 3, 2, 2, 3, -4
+output: 12
+*/
+
+int maxMult(int* mus);
+TEST_CASE( "max mult" )
+{
+    int m[6] = {-1, 0, 1, -2, -4, 5};
+    REQUIRE(maxMult(m) == 20);
+
+    int mus[1] = {1};
+    REQUIRE(maxMult(mus) == 1);
+
+    int array[4] = {-1, 2, 0, 6};
+    REQUIRE(maxMult(array) == 12);
+
+    int null_mus[3] = {0, 0, 0};
+    REQUIRE(maxMult(null_mus) == 0);
+}
+
+
+/*
+Задача 31.
+Напишите функцию, которая принимает строку, а возвращает ее перевернутый вариант (слова в обратном порядке).
+Сигнатура: char* reverse(char* str);
+Example:
+input: general purpose programming language 
+output: language programming purpose general
+*/
+
+char* reverse(char* str);
+TEST_CASE( "reverse str" ) 
+{    
+    REQUIRE(std::string(reverse("general purpose programming language")) ==
+        std::string("language programming purpose general"));
+    REQUIRE(std::string(reverse("123"))  == std::string("123"));
+    REQUIRE(std::string(reverse(""))  == std::string(""));
+    REQUIRE(std::string(reverse("im tired"))  == std::string("tired im"));
+}
+
+
+/*
+Задача 33.
+Написать функцию сортировки массива в порядке неубывания.
+Сигнатура: int* sort(int* mus);
+Example:
+input: 1 5 8 1 6 4 5 10
+output: 1 1 4 5 5 6 8 10
+*/
+
+int* sort(int* mus);
+TEST_CASE( "to sort mus" )
+{   
+    SECTION("test 1") 
+    {
+        int m[6] = {1, 0, 1, 2, 4, 2};
+        int m_test[6] = {0, 1, 1, 2, 2, 4};
+        int* m_res = deleteRepeat(m);
+        for (int i = 0; i < 6; ++i) {
+            REQUIRE(m_res[i] == m_test[i]);
+        }
+    }
+
+    SECTION("test 2") 
+    {
+        int m[3] = {1,1,1};
+        int m_test[3] = {1,1,1};
+        int* m_res = deleteRepeat(m);
+        for (int i = 0; i < 3; ++i) {
+            REQUIRE(m_res[i] == m_test[i]);
+        }
+    }
+
+    SECTION("test 3") 
+    {
+        int m[4] = {1, 2, 3, 4};
+        int m_test[4] = {1, 2, 3, 4};
+        int* m_res = deleteRepeat(m);
+        for (int i = 0; i < 4; ++i) {
+            REQUIRE(m_res[i] == m_test[i]);
+        }
+    }
+}
+
+
+/*
+Задача 38. (+)
+Напишите функцию, которая удаляет из массива все повторяющиеся элементы. 
+Сигнатура: int* deleteRepeat(int* mus);
+Example:
+input: 1 5 8 1 6 4 5 1 10
+output: 1 5 8 6 4 10
+*/
+
+int* deleteRepeat(int* mus);
+TEST_CASE( "delete Repeat" )
+{   
+    SECTION("test 1") 
+    {
+        int m[6] = {1, 0, 1, 2, 4, 2};
+        int m_test[4] = {1, 0, 2, 4};
+        int* m_res = deleteRepeat(m);
+        for (int i = 0; i < 4; ++i) {
+            REQUIRE(m_res[i] == m_test[i]);
+        }
+    }
+
+    SECTION("test 2")
+    {
+        int m[4] = {1, 1, 1, 1};
+        int m_test[1] = {1};
+        int* m_res = deleteRepeat(m);
+        for (int i = 0; i < 1; ++i) {
+            REQUIRE(m_res[i] == m_test[i]);
+        }
+    }
+
+    SECTION("test 3") 
+    {
+        int m[3] = {1, 2, 3};
+        int m_test[3] = {1, 2, 3};
+        int* m_res = deleteRepeat(m);
+        for (int i = 0; i < 3; ++i) {
+            REQUIRE(m_res[i] == m_test[i]);
+        }
+    }
+}
+
+
+
+/*
+Задача 13. (-)
+Вводится пятизначное число. Необходимо вывести отдельно каждую цифру в новой строке.
+
+
+Задача 14. (-)
+Пользователь вводит натуральное число n - количество слагаемых и целое число k - степень.
+Найти алгебраическую сумму для выражения: 1^k + 2^k + 3^k + … + N^k.
+
+
+Задача 15. (-)
+Вводится натуральное число. Найти наибольшую и наименьшую цифру в числе.
+
+
+Задача 16. (-)
+Вводятся 3 рациональных числа x,y,z - координаты вектора. Найти его длину. Ответ округлить до сотых. 
+
+
+
+
+Задача 18. (-)
+Пользователь вводит нечетное число n >= 3, затем вводится число, где  1 - *,2 -  +, 3 - #.
+Составить программу, которая будет печатать ромб выбранным значком. 
+Выбор значков организовать оператором switch.
+
+
+Задача 21.
+Используя оператор цикла do while, составить программу, которая будет требовать ввод цифр
+с клавиатуры до тех пор, пока не будет введен 0. Вывести сумму введенных цифр.
+
+
+Задача 30. (не знаю, как это тестить)
 Дан файл, в котором записан некоторый текст на английском языке. Требуется вывести в алфавитном
 порядке все буквы, которые встречаются в файле и их количество.
 
-Задача 31.
-Пользователь вводит через запятую целые числа, которыми будет заполнен массив.
-Напишите функцию, которая принимает массив с разными числами, а возвращает максимальное
-произведение двух чисел из этого массива. Вывести результат.
 
-Задача 31.
-Пользователь вводит строку. Напишите функцию, которая принимает строку, а возвращает ее
-перевернутый вариант (слова в обратном порядке). Напечатать полученную строку на экране. 
+Задача 32. (в принципе, можно попробовать сделать вывод как двумерный массив, но зачем...)
+На вход подается число N. Вывести на экран треугольник из символов "*" из N линий.
+Example:
+input:
+5
+output:
+    *
+   ***
+  *****
+ *******
+*********
 
-Задача 32.
-На вход подается число N. Вывести на экран треугольник из символов ’*’ из N линий.
-
-Задача 33.
-Пользователь вводит числа, которыми будет заполнен массив. 
-Реализовать функцию сортировки массива. Вывести на экран отсортированный массив. 
 
 Задача 34.
 На вход подается одномерный массив целых чисел. Необходимо отсортировать массив (можно методом пузырька)
 и вывести его на экран. В отсортированном массиве найти медиану (отметка, делящая ранжированные данные, 
 либо число по середине ранжированного списка либо среднее арифметическое из двух по середине), моду 
 (наиболее часто встречающееся значение в данных), среднее, максимум, минимум, размах (разность между наибольшим и наименьшим).
+Example:
+input:
+5 3 -2 6 -9 2 0 4 8 -2
+output:
+-9  -2 -2  0 2 3 4 5 6 8
+2.5
+-2
+1.5
+8
+-9
+17
+
 
 Задача 35.
 Даны значения двух моментов времени, принадлежащих одним и тем же суткам: часы, минуты и секунды для каждого
 из моментов времени. Известно, что второй момент времени наступил не раньше первого. Определите, сколько секунд
 прошло между двумя моментами времени.
+Example:
+input:
+12 32 45
+17 43 06
+output:
+18621
+
 
 Задача 36.
 Определите наименьшее расстояние между двумя локальными максимумами последовательности натуральных чисел,
 завершающейся числом 0. Если в последовательности нет двух локальных максимумов, выведите число 0.
+Example:
+input: 3 4 5 1 6 2 1 3 5 0
+output: 1
+
 
 Задача 37.
 Даны действительные коэффициенты a, b, c. Решите уравнение ax2 + bx + c = 0 и выведите все его корни.
 Если данное уравнение не имеет корней, выведите число 0. Если уравнение имеет один корень, 
 выведите число 1, а затем этот корень. Если уравнение имеет два корня, выведите число 2, а затем два корня
 в порядке возрастания. Если уравнение имеет бесконечно много корней, выведите число 3.
+Example:
+input:
+1 -5 4
+output:
+2
+4 1
 
-Задача 38.
-Дан массив. Выведите те его элементы, которые встречаются в массиве только один раз. 
-Элементы нужно выводить в том порядке, в котором они встречаются в списке.
-
+*/
