@@ -4,21 +4,22 @@ typedef struct
 	float y;
 } Complex;
 
-// Сложение
+// РЎР»РѕР¶РµРЅРёРµ
 Complex add(Complex a, Complex b);
-// Умножение
+// РЈРјРЅРѕР¶РµРЅРёРµ
 Complex mul(Complex a, Complex b);
-// Деление
+// Р”РµР»РµРЅРёРµ
 Complex div(Complex a, Complex b);
-// Получение модуля
+// РџРѕР»СѓС‡РµРЅРёРµ РјРѕРґСѓР»СЏ
 float mod(Complex a);
-// Получение аргумента
+// РџРѕР»СѓС‡РµРЅРёРµ Р°СЂРіСѓРјРµРЅС‚Р°
 float arg(Complex a);
-// Получение сопряжённого
-Complex add(Complex a);
-// Вывод в алгебраической форме
+// РџРѕР»СѓС‡РµРЅРёРµ СЃРѕРїСЂСЏР¶С‘РЅРЅРѕРіРѕ
+Complex rev(Complex a);
+// Р’С‹РІРѕРґ РІ Р°Р»РіРµР±СЂР°РёС‡РµСЃРєРѕР№ С„РѕСЂРјРµ
 void printAlg(Complex a);
-// Вывод в тригонометрической форме
+// Р’С‹РІРѕРґ РІ С‚СЂРёРіРѕРЅРѕРјРµС‚СЂРёС‡РµСЃРєРѕР№ С„РѕСЂРјРµ
 void printTrig(Complex a);
-// Вывод в показательной форме
-void printExp(Complex a)
+// Р’С‹РІРѕРґ РІ РїРѕРєР°Р·Р°С‚РµР»СЊРЅРѕР№ С„РѕСЂРјРµ
+void printExp(Complex a);
+
