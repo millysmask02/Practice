@@ -223,3 +223,66 @@ TEST_CASE("arg")
         REQUIRE(mod(test10) == (float)(-0.5* M_PI + 0));
     }
 }
+
+Complex rev(Complex a);
+TEST_CASE("con") 
+{
+    SECTION( "Ex1" ) 
+    {
+        Complex a = {2, 2};
+        Complex res = {2, -2};
+        Complex test = rev(a);
+        REQUIRE(res.x == test.x);
+        REQUIRE(res.y == test.y);
+    }
+    SECTION( "Ex2" ) 
+    {
+        Complex a = {2, -2};
+        Complex res = {2, 2};
+        Complex test = rev(a);
+        REQUIRE(res.x == test.x);
+        REQUIRE(res.y == test.y);
+    }
+    SECTION( "Ex3" ) 
+    {
+        Complex a = {2, 0};
+        Complex res = {2, 0};
+        Complex test = rev(a);
+        REQUIRE(res.x == test.x);
+        REQUIRE(res.y == test.y);
+    }
+    SECTION( "Ex4" ) 
+    {
+        Complex a = {-1, 1};
+        Complex res = {-1, -1};
+        Complex test = rev(a);
+        REQUIRE(res.x == test.x);
+        REQUIRE(res.y == test.y);
+    }
+    SECTION( "Ex5" ) 
+    {
+        Complex a = {0, 1};
+        Complex res = {0, -1};
+        Complex test = rev(a);
+        REQUIRE(res.x == test.x);
+        REQUIRE(res.y == test.y);
+    }
+    SECTION( "Ex6" ) 
+    {
+        Complex a = {0,0};
+        Complex res = {0, 0};
+        Complex test = rev(a);
+        REQUIRE(res.x == test.x);
+        REQUIRE(res.y == test.y);
+    }
+    SECTION( "Ex7" ) 
+    {
+        Complex a = {-2, -2};
+        Complex res = {-2, 2};
+        Complex test = rev(a);
+        REQUIRE(res.x == test.x);
+        REQUIRE(res.y == test.y);
+    }
+}
+
+//Как делать тесты для void функций я пока не знаю(((
