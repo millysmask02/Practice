@@ -646,18 +646,18 @@ float* mus(float* array);
 TEST_CASE(" ") 
 {   
     SECTION("1") {
-        float* arr = {5, 3, -2, 6, -9, 2, 0, 4, 8, -2};
-        float* res = {-9, -2, -2, 0, 2, 3, 4, 5, 6, 8, 2.5, -2, 1.5, 8, -9, 17};
+        float arr[10] = {5, 3, -2, 6, -9, 2, 0, 4, 8, -2};
+        float res[16] = {-9, -2, -2, 0, 2, 3, 4, 5, 6, 8, 2.5, -2, 1.5, 8, -9, 17};
         float* test = mus(arr);
-        for (int i = 0; i < res.size(); ++i) {
+        for (int i = 0; i < 16; ++i) {
             REQUIRE(res[i] == test[i]);
         }
     }
     SECTION("2") {
-        float* arr = {5, -9, 8, 1, -4, 1};
-        float* res = {-9, -4, 1, 1, 5, 8, 1, 1, 0.333333, 8, -9, 17};
+        float arr[6] = {5, -9, 8, 1, -4, 1};
+        float res[12] = {-9, -4, 1, 1, 5, 8, 1, 1, 0.333333, 8, -9, 17};
         float* test = mus(arr);
-        for (int i = 0; i < res.size(); ++i) {
+        for (int i = 0; i < 12; ++i) {
             REQUIRE(res[i] == test[i]);
         }
     }
