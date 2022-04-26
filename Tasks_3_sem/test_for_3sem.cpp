@@ -261,12 +261,49 @@ TEST_CASE("playing Cards")
 
 /*
 Задача 4.
-Напишите функцию, которая исключит из вектора первый четный элемент, следующий за максимальным. 
+Напишите функцию deleteElement, которая исключит из вектора первый четный элемент, следующий за максимальным. 
 На вход подается вектор целых чисел. 
-На выход - позиция элемента, его значение, массив после удаления элемента. 
+На выход - напечатать позицию элемента и его значение, вернуть массив после удаления элемента. 
 Примечание: resize(), copy() и ofstream_iterator (для вывода вектора), max_element(), 
 find_if с лямбда-функцией для определение четности число ([](тип значение) {код}), distance(), erase().
 */
+
+std::vector<int> deleteElement(std::vector<int> input);
+TEST_CASE(" ")
+{
+    SECTION("1") {
+        std::vector<int> input = {1, 5, 6, 8, -1, 4};
+        std::vector<int> res = {1, 5, 6, 8, -1};
+        std::vector<int> test = deleteElement(input);
+        for (int i = 0; i < res.size(); i++) {
+            REQUIRE(res[i] == test[i]);
+        }
+    }
+    SECTION("2") {
+        std::vector<int> input = {8, 1, 2, 3};
+        std::vector<int> res = {8, 1, 3};
+        std::vector<int> test = deleteElement(input);
+        for (int i = 0; i < res.size(); i++) {
+            REQUIRE(res[i] == test[i]);
+        }
+    }
+    SECTION("4") {
+        std::vector<int> input = {1, 2, 3, 4};
+        std::vector<int> res = {1, 2, 3, 4};
+        std::vector<int> test = deleteElement(input);
+        for (int i = 0; i < res.size(); i++) {
+            REQUIRE(res[i] == test[i]);
+        }
+    }
+    SECTION("5") {
+        std::vector<int> input = {1, 4, 3, -1};
+        std::vector<int> res = {1, 4, 3, -1};
+        std::vector<int> test = deleteElement(input);
+        for (int i = 0; i < res.size(); i++) {
+            REQUIRE(res[i] == test[i]);
+        }
+    }
+}
 
 
 /*
